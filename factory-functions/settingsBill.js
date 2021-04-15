@@ -7,6 +7,7 @@ function BillWithSettings(){
 
     var callCostTotal = 0;
     var smsCostTotal = 0;
+    //var theCriticalTotal = 0
 
     function setCallCost(callCost){
          theCallCost = callCost;
@@ -54,15 +55,23 @@ function BillWithSettings(){
     }
 
     function getTotalSmsCost(){
-        return 0;
+        return smsCostTotal;
     }
 
     function sendSms(){
         smsCostTotal += theSmsCost;
     }
 
-    function sendSms(){
-        return smsCostTotal;
+    function totalClassName(){
+
+        if(getTotalCost() >= getCriticalLevel()){
+            return "critical";
+        };
+
+        if(getTotalCost() >= getWarningLevel()){
+            return "warning";
+        };
+    
     }
 
 //expose functions into factory function
@@ -79,7 +88,8 @@ function BillWithSettings(){
         getTotalCost,
         getTotalCallCost,
         getTotalSmsCost,
-        sendSms
+        sendSms,
+        totalClassName
 
     }
 }

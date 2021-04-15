@@ -80,7 +80,7 @@ describe("test settings bill factory function", function(){
 //set all the prices that we going to need and 
 //ways of SETTING and GETTING values
 
-//we wanna use the values
+//************we wanna USE the VALUES of sms and call**************************//
 describe("use values", function(){
     it("should be able to use the cost set", function(){
         let settingsBill = BillWithSettings();
@@ -102,7 +102,7 @@ describe("use values", function(){
 
         settingsBill.setCallCost(1.35);
         settingsBill.setSmsCost(0.85);
-        // state: how many calls = 2 calls made
+        // state: how many calls made = 2
         settingsBill.makeCall();
         settingsBill.makeCall();
 
@@ -117,7 +117,7 @@ describe("use values", function(){
 
         settingsBill.setCallCost(1.35);
         settingsBill.setSmsCost(0.85);
-
+        // state: how many calls made = 2
         settingsBill.sendSms();
         settingsBill.sendSms();
 
@@ -126,5 +126,68 @@ describe("use values", function(){
         assert.equal(1.70, settingsBill.getTotalSmsCost());
     });
 
+
+    it("this instance...should be able to send 2 sms's at 0.85 each and 1 call at 1.35", function(){
+        let settingsBill = BillWithSettings();
+
+        settingsBill.setCallCost(1.35);
+        settingsBill.setSmsCost(0.85);
+
+        // state: how many sms = 2 sent sms's and 1 call made
+        settingsBill.sendSms();
+        settingsBill.sendSms();
+        settingsBill.makeCall();
+
+        assert.equal(3.05, settingsBill.getTotalCost());
+        assert.equal(1.35, settingsBill.getTotalCallCost());
+        assert.equal(1.70, settingsBill.getTotalSmsCost());
+    });                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+
 })
+
+//************add test for warning and critical Level**************************//
+
+describe("warning and critical level", function(){
+    //create a function that have a class that are dom can use to see which class to add to a dom to the dom to make the total red or orange
+    it("should return a class name of warning if warning level is reached", function(){
+        let settingsBill = BillWithSettings();
+
+        settingsBill.setCallCost(1.35);
+        settingsBill.setSmsCost(0.85);
+        settingsBill.setWarningLevel(5);
+        settingsBill.setCriticalLevel(10);
+        // state: how many sms = 2 sent sms's and 1 call made
+        settingsBill.makeCall();
+        settingsBill.makeCall();
+        settingsBill.makeCall();
+        settingsBill.makeCall();
+
+        //console.log(settingsBill.getTotalCost);
+
+        assert.equal("warning", settingsBill.totalClassName());
+    })
+
+    it("should return a class name of critical if critical level is reached", function(){
+        let settingsBill = BillWithSettings();
+
+        settingsBill.setCallCost(2.50);
+        settingsBill.setSmsCost(0.85);
+        settingsBill.setCriticalLevel(10);
+        // state: how many sms = 2 sent sms's and 1 call made
+        settingsBill.makeCall();
+        settingsBill.makeCall();
+        settingsBill.makeCall();
+        settingsBill.makeCall();
+
+        //console.log(settingsBill.getTotalCost);
+
+        assert.equal("critical", settingsBill.totalClassName());
+    })
+    
+
+
+})
+
+//so far we set prices, use prics for calls and sms.....next we will use critical levels
+
 
