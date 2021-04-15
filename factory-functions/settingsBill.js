@@ -44,7 +44,10 @@ function BillWithSettings(){
     }
 
     function makeCall(){
-        callCostTotal += theCallCost;
+        //when sending sms if I have not reached the criticalLevel...increament the call cost 
+        if(!hasReachedCriticalLevel()){
+            callCostTotal += theCallCost;
+        }
     }
     function getTotalCost(){
         return callCostTotal + smsCostTotal;
@@ -59,12 +62,20 @@ function BillWithSettings(){
     }
 
     function sendSms(){
-        smsCostTotal += theSmsCost;
+        //when sending sms if I have not reached the criticalLevel...increament the sms cost 
+        if(!hasReachedCriticalLevel()){
+            smsCostTotal += theSmsCost;
+            
+        };
+    }
+    //this function below checks if the total cost is great or equal the criticalLevel
+    function hasReachedCriticalLevel(){
+        return getTotalCost() >= getCriticalLevel()
     }
 
     function totalClassName(){
 
-        if(getTotalCost() >= getCriticalLevel()){
+        if(hasReachedCriticalLevel()){
             return "critical";
         };
 
