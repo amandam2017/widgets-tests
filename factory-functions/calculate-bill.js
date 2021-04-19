@@ -1,6 +1,8 @@
 //function billWithString(){
     function totalPhoneBill(billString){
-         var billItems = billString.split(",");
+        var smsCostTotal = 0;
+        var callCostTotal = 0;
+        var billItems = billString.split(",");
     // a variable for the total phone bill.
     var billTotal = 0;
     //loop over all the bill items
@@ -13,7 +15,6 @@
             billTotal += 0.75;
         }
     }
-    
     
      // round to two decimals
      var roundedBillTotal = billTotal.toFixed(2);

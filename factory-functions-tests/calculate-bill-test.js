@@ -1,5 +1,5 @@
 describe("test calculateBill function using the available cost for billItems(sms and calls)", function(){
-    it("take a string call/sms and return the total cost of call/sms", function(){
+    it("take a string both call and sms and should return the total cost of call/sms", function(){
 
         assert.equal(totalPhoneBill("sms,sms,sms,call,call,call"),10.50);  
 
