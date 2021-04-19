@@ -27,6 +27,20 @@ function textBillTotal(){
 
       //add color
 
+      function getWarningLevel(){
+
+          if(getTotalCost() >= 30 && getTotalCost() < 50){
+              return "warning";
+          }
+      }
+
+      function getCriticalLevel(){
+
+        if(getTotalCost() >= 50){
+            return "danger";
+        }
+    }
+
     // if (totalCost >= 50){
     //     // adding the danger class will make the text red
     //     totalCostElem.classList.add("danger");
@@ -40,7 +54,9 @@ function textBillTotal(){
         getCallCostTotal,
         getSmsCostTotal,
         getTotalCost,
-        billType
+        billType,
+        getWarningLevel,
+        getCriticalLevel
     }
 
 }

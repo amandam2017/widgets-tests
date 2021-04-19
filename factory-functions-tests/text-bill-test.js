@@ -21,7 +21,7 @@ describe("test textBill...takes sms or call and return the amount and return an 
 
     })
 
-    it("should take a string call and return the total of 10 sms", function(){
+    it("should take a string call and return the total of 5 sms", function(){
 
         var callStringTotal = textBillTotal();
         callStringTotal.billType('sms')
@@ -30,7 +30,7 @@ describe("test textBill...takes sms or call and return the amount and return an 
         callStringTotal.billType('sms')
         callStringTotal.billType('sms')
 
-        console.log(callStringTotal.getTotalCost());
+        // console.log(callStringTotal.getTotalCost());
         
         assert.equal(3.75, callStringTotal.getSmsCostTotal());
         assert.equal(3.75, callStringTotal.getTotalCost());
@@ -40,13 +40,58 @@ describe("test textBill...takes sms or call and return the amount and return an 
 
     it("should return a warning level class if a warningLevel is reached", function(){
 
-        let textBill = textBillTotal();
+     //   let textBill = textBillTotal();
 
-        setWarningLevel = 30;
+        var callStringTotal = textBillTotal();
+        callStringTotal.billType('call')
+        callStringTotal.billType('call')
+        callStringTotal.billType('call')
+        callStringTotal.billType('call')
+        callStringTotal.billType('call')
+        callStringTotal.billType('call')
+        callStringTotal.billType('call')
+        callStringTotal.billType('call')
+        callStringTotal.billType('call')
+        callStringTotal.billType('call')
+        callStringTotal.billType('call')
+        callStringTotal.billType('call')
 
-        var callStringTotal = textBillTotal("call,call,call,call,call,call,call,call,call,call,call,call");
-        assert.equal(33.00, callStringTotal);
-        assert.equal("warning", (textBill));
+       
+        assert.equal("warning", (callStringTotal.getWarningLevel()));
     })
+
+    it("should return a ganger level class if a criticalLevel is reached", function(){
+
+        //   let textBill = textBillTotal();
+   
+           var callStringTotal = textBillTotal();
+           callStringTotal.billType('call')
+           callStringTotal.billType('call')
+           callStringTotal.billType('call')
+           callStringTotal.billType('call')
+           callStringTotal.billType('call')
+           callStringTotal.billType('call')
+           callStringTotal.billType('call')
+           callStringTotal.billType('call')
+           callStringTotal.billType('call')
+           callStringTotal.billType('call')
+           callStringTotal.billType('call')
+           callStringTotal.billType('call')
+           callStringTotal.billType('call')
+           callStringTotal.billType('call')
+           callStringTotal.billType('call')
+           callStringTotal.billType('call')
+           callStringTotal.billType('call')
+           callStringTotal.billType('call')
+           callStringTotal.billType('call')
+           callStringTotal.billType('call')
+           callStringTotal.billType('call')
+           callStringTotal.billType('call')
+           callStringTotal.billType('call')
+           callStringTotal.billType('call')
+   
+          
+           assert.equal("danger", (callStringTotal.getCriticalLevel()));
+       })
     
 })
