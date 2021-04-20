@@ -13,7 +13,7 @@ describe("test textBill...takes sms or call and return the amount and return an 
         callStringTotal.billType('call')
         callStringTotal.billType('call')
 
-        //console.log(callStringTotal.getTotalCost())
+        console.log(callStringTotal.getTotalCost())
         
         assert.equal(0, callStringTotal.getSmsCostTotal());
         assert.equal(27.50, callStringTotal.getTotalCost());

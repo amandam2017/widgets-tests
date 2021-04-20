@@ -1,6 +1,6 @@
 function textBillTotal(){
 
-    //warning and criticalLevel variables
+    //string variables variables
     var callsTotal = 0;
     var smsTotal = 0;
     // update the correct total
